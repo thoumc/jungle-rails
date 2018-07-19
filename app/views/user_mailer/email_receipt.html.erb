@@ -1,14 +1,9 @@
-<section class="orders-show">
-
-  <header class="page-header">
-    <h1>Order #<%= @order.id %></h1>
-  </header>
-
-  <div class="order-summary jumbotron">
-    <h4>Thank you for your order! Your email-receipt has been sent to:  </h4>
-    <p><%= @order.email %></p>
-  </div>
-  <section class="cart-show">
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>Thank you for shopping at Jungle. </h1>
 
   <header class="page-header">
     <h1>Your Order:</h1>
@@ -26,8 +21,8 @@
       </thead>
       <tbody>
         <% @order_total = 0%>
-        <% @ordered_item.each do |item| %>
-          <%= render 'item', item: item %>
+        <% @order.line_items.each do |item| %>
+        <%= render 'item', item: item %>
         <% end %>
       </tbody>
       <tfoot>
@@ -44,9 +39,7 @@
   </div>
 
 
-</section>
 
-
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
-
-</section>
+  <p>Thank you for shopping with us and have a great day!</p>
+</body>
+</html>
