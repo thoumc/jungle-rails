@@ -3,6 +3,10 @@
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
+  <% if @cart_total = 0 %>
+  <div>Your cart is now empty</div>
+  <a href= "/">Go back</a>
+  <% else %>
 
   <div class="panel panel-default items">
     <table class="table table-bordered">
@@ -49,5 +53,6 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 
 </section>
