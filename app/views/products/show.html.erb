@@ -26,6 +26,37 @@
       </div>
     </div>
 
+
   </article>
+
+<article class="product-review">
+<div class="row">
+
+ <div class="col-sm-8">
+    <div class="product-detail">
+      <h4>Product Reviews</h4>
+      <% @reviews.each do |review| %>
+      <dl class= 'dl-horizontal'>
+        <dt>Name</dt>
+        <dd><%= User.find(review.user_id).first_name %></dd>
+        <dt>Description</dt>
+        <dd><%= review.description %></dd>
+        <dt>Rating</dt>
+        <dd><%= review.rating %>/5</dd>
+      </dl>
+      <% end %>
+    </div>
+  </div>
+</div>
+</article>
+
+<section class = "review-form">
+  <%= form_for :review do |f| %>
+  First name: <%= f.text_field :first_name %><br />
+  Description : <%= f.text_area :description %><br />
+  Rating   : <%= f.number_field :rating, options={min: 1, max: 5} %><br />
+  <%= f.submit %>
+<% end %>
+  </section>
 
 </section>

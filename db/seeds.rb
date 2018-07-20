@@ -108,7 +108,7 @@ cat2.products.create!({
   price: 2_026.29
 })
 
-cat3.products.create!({
+product2 = cat3.products.create!({
   name:  'Optimal Sleeping Bed',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture1.jpg'),
@@ -116,7 +116,7 @@ cat3.products.create!({
   price: 3_052.00
 })
 
-cat3.products.create!({
+product1 = cat3.products.create!({
   name:  'Electric Chair',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture2.jpg'),
@@ -132,5 +132,58 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+user1 = User.create!({
+  first_name: 'User1',
+  last_name: 'Small',
+  email: 'user1@example.com',
+  password: 'user1'
+})
+
+user2 = User.create!({
+  first_name: 'User2',
+  last_name: 'Medium',
+  email: 'user2@example.com',
+  password: 'user2'
+})
+
+user3 = User.create!({
+  first_name: 'User3',
+  last_name: 'Large',
+  email: 'user3@example.com',
+  password: 'user3'
+})
+
+
+product1.reviews.create!({
+  description: "This is user1's review",
+  rating: 4,
+  user: user1
+})
+
+product1.reviews.create!({
+  description: "This is user2's review",
+  rating: 2,
+  user: user2
+})
+
+product1.reviews.create!({
+  description: "This is user3's review",
+  rating: 3,
+  user: user3
+})
+
+
+product2.reviews.create!({
+  description: "This is user2's review",
+  rating: 2,
+  user: user2
+})
+
+
+product2.reviews.create!({
+  description: "This is user3's review",
+  rating: 4,
+  user: user3
+})
 
 puts "DONE!"
