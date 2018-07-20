@@ -24,5 +24,20 @@
   <aside class="sold-out">SOLD OUT! </aside>
 <% end%>
 
+<% if product.reviews.size > 0%>
+
+<% @sum = 0 %>
+
+<% product.reviews.each do |review| %>
+<% @sum += review.rating %>
+<% end %>
+<%= @average = (@sum /product.reviews.size).round(1) %>
+
+
+<aside>Overall Ratings: <%= @average %> /5 </aside>
+
+<% end %>
+
+
 
 </article>

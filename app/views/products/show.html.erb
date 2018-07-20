@@ -29,34 +29,43 @@
 
   </article>
 
-<article class="product-review">
-<div class="row">
+  <article class="product-review">
+    <div class="row">
 
- <div class="col-sm-8">
-    <div class="product-detail">
-      <h4>Product Reviews</h4>
-      <% @reviews.each do |review| %>
-      <dl class= 'dl-horizontal'>
-        <dt>Name</dt>
-        <dd><%= User.find(review.user_id).first_name %></dd>
-        <dt>Description</dt>
-        <dd><%= review.description %></dd>
-        <dt>Rating</dt>
-        <dd><%= review.rating %>/5</dd>
-      </dl>
-      <% end %>
+     <div class="col-sm-8">
+      <div class="product-detail">
+        <h4>Product Reviews</h4>
+        <% @reviews.reverse.each do |review| %>
+        <dl class= 'dl-horizontal'>
+          <dt>Name</dt>
+          <dd><%= User.find(review.user_id).first_name %></dd>
+          <dt>Description</dt>
+          <dd><%= review.description %></dd>
+          <dt>Rating</dt>
+          <dd><%= review.rating %>/5</dd>
+          <%if(review.user_id == current_user.id)%>
+          <dd><%= link_to fa_icon('trash'), [@product, review ], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %></dd>
+          <% end %>
+        </dl>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 </article>
-
+<% if current_user %>
 <section class = "review-form">
-  <%= form_for :review do |f| %>
-  First name: <%= f.text_field :first_name %><br />
+  <%= form_for [ @product, @review ] do |f| %>
   Description : <%= f.text_area :description %><br />
-  Rating   : <%= f.number_field :rating, options={min: 1, max: 5} %><br />
+  Rating   : <%= f.select :rating, [1,2,3,4,5] %><br />
   <%= f.submit %>
+  <% end %>
+</section>
+
+<% else %>
+
+<p>Log in to post a comment!</p>
+
 <% end %>
-  </section>
+
 
 </section>
