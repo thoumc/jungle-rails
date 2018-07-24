@@ -1,42 +1,42 @@
 <article class="product">
   <header>
     <%= link_to product do %>
-      <%= image_tag product.image.thumb, alt: product.name %>
-      <h4><%= product.name %></h4>
+    <%= image_tag product.image.thumb, alt: product.name %>
+    <h4><%= product.name %></h4>
     <% end %>
   </header>
   <p class="description">
     <%= product.description %>
   </p>
   <footer class="actions">
-    <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
-      <%= fa_icon "shopping-cart", text: 'Add' %>
+    <%= link_to add_item_cart_path(product_id: product.id), id: 'add', class: 'btn btn-primary', method: :put do %>
+    <%= fa_icon "shopping-cart", text: 'Add' %>
     <% end %>
     <%= link_to product, class: 'btn btn-default pull-right' do %>
-      Details &raquo;
+    Details &raquo;
     <% end %>
   </footer>
 
   <aside class="price">
     <%= humanized_money_with_symbol product.price %>
   </aside>
-<% if product.quantity <= 0 %>
+  <% if product.quantity <= 0 %>
   <aside class="sold-out">SOLD OUT! </aside>
-<% end%>
+  <% end%>
 
-<% if product.reviews.size > 0%>
+  <% if product.reviews.size > 0%>
 
-<% @sum = 0 %>
+  <% @sum = 0 %>
 
-<% product.reviews.each do |review| %>
-<% @sum += review.rating %>
-<% end %>
-<%= @average = (@sum /product.reviews.size).round(1) %>
+  <% product.reviews.each do |review| %>
+  <% @sum += review.rating %>
+  <% end %>
+  <%= @average = (@sum /product.reviews.size).round(1) %>
 
 
-<aside>Overall Ratings: <%= @average %> /5 </aside>
+  <aside>Overall Ratings: <%= @average %> /5 </aside>
 
-<% end %>
+  <% end %>
 
 
 
